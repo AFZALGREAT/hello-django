@@ -1,19 +1,19 @@
 FROM python:3.9
 
-# App ka work directory set kar rahe hain
+# Working directory
 WORKDIR /app
 
-# Requirements.txt ko copy kar rahe hain
+# Copy requirements.txt
 COPY app/requirements.txt /app/requirements.txt
 
-# Dependencies install kar rahe hain
+# Install dependencies
 RUN pip install -r /app/requirements.txt
 
-# Code ko container mein copy kar rahe hain
+# Copy the rest of the code into the container
 COPY app/ /app/
 
-# Expose kar rahe hain port 8000
+# Expose port 8000 for Django
 EXPOSE 8000
 
-# Django runserver ko chalana
+# Run Django app
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
